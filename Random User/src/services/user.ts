@@ -1,16 +1,12 @@
-import axios from "axios";
-import type { UserApiResult } from "../types/user";
+import axios from 'axios';
+import type { UserApiResult } from '../types/user';
 
 const userServer = axios.create({
-  baseURL: "https://randomuser.me/api/",
+  baseURL: 'https://randomuser.me/api/',
 });
 
-export async function getUserList(
-  page: number,
-  results: number,
-  seed?: string,
-) {
-  const result = await userServer.get<UserApiResult>("", {
+export async function getUserList(page: number, results: number, seed?: string) {
+  const result = await userServer.get<UserApiResult>('', {
     params: {
       page,
       results,
@@ -21,7 +17,7 @@ export async function getUserList(
 }
 
 export async function getUserDetail(id: string) {
-  const result = await userServer.get<UserApiResult>("", {
+  const result = await userServer.get<UserApiResult>('', {
     params: {
       seed: id,
     },

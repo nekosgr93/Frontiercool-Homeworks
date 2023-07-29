@@ -6,9 +6,9 @@ defineProps<{
 
 <template lang="pug">
 .flex.flex-1.item-center.justify-center.py-4
-  v-pagination(
-    :length=pageLength
-  )
+  //- v-pagination(
+  //-   :length=pageLength
+  //- )
 </template>
 
 <style scoped></style>
