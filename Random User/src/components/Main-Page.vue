@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import CardList from './lists/Card-List.vue';
+import UserList from './lists/User-List.vue';
 import HeaderBar from './header/Header-Bar.vue';
 import PageFooter from './footer/Page-Footer.vue';
 import type { User } from '../types/user';
@@ -23,8 +23,7 @@ onMounted(async () => {
   header.absolute.top-0.w-full
     HeaderBar
   main.flex.flex-1.justify-center.pt-32.pb-32
-    div(v-if="users")
-      card-list(v-if="pageStore.listType === 'grid'" :users="users")
+    UserList(:list-type="pageStore.listType" :users="users")
   footer.fixed.bottom-0.w-screen
     PageFooter(
       :page-length="10"

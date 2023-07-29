@@ -15,7 +15,7 @@ const currentPage = computed({
 </script>
 
 <template lang="pug">
-.flex.flex-1.item-center.justify-center.py-4.bg-cyan-700
+.flex.flex-1.items-center.justify-center.py-4.bg-cyan-700
   EllpsisPagination(:page-length="pageLength" v-model="currentPage")
 </template>
 

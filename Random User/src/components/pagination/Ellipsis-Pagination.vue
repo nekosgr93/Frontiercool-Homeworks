@@ -1,6 +1,6 @@
 <template lang="pug">
 .flex.flex-row
-  button.page-button(@click="$emit('update:modelValue', modelValue - 1)" :disabled="modelValue === 1")
+  button.page-button(class=["disabled:text-slate-400"] @click="$emit('update:modelValue', modelValue - 1)" :disabled="modelValue === 1")
     font-awesome-icon(:icon="['fas', 'chevron-left']")
   button.page-button(
     v-for="page in pages"
@@ -10,7 +10,7 @@
     @click="$emit('update:modelValue', page)"
     )
     p.text-xl {{ page }}
-  button.page-button(@click="$emit('update:modelValue', modelValue + 1)" :disabled="modelValue === pageLength")
+  button.page-button(class=["disabled:text-slate-400"] @click="$emit('update:modelValue', modelValue + 1)" :disabled="modelValue === pageLength")
     font-awesome-icon(:icon="['fas', 'chevron-right']")
 </template>
 
@@ -31,12 +31,9 @@ function calcPagination(currentPage: number) {
   if (props.pageLength < 7) {
     return Array.from({ length: 7 }, (_, i) => i + 1);
   } else {
-    const _pages: (number | '...')[] = [];
-    _pages.push(1);
+    const _pages: (number | '...')[] = [1];
     const pre = currentPage - 1;
     const next = currentPage + 1;
-    console.log(pre);
-    console.log(next);
 
     if (pre !== 1 && pre > 0) {
       if (pre - 1 > 1) {

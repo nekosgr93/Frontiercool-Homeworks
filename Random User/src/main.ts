@@ -9,10 +9,18 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 /* import specific icons */
-import { faSort, faGrip, faList, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSort,
+  faGrip,
+  faList,
+  faChevronRight,
+  faChevronLeft,
+  faHeart as fasHeart,
+} from '@fortawesome/free-solid-svg-icons';
+import { faHeart as fagHeart } from '@fortawesome/free-regular-svg-icons';
 
 /* add icons to the library */
-library.add(faSort, faGrip, faList, faChevronLeft, faChevronRight);
+library.add(faSort, faGrip, faList, faChevronLeft, faChevronRight, fasHeart, fagHeart);
 const pinia = createPinia();
 
 createApp(App).use(pinia).component('font-awesome-icon', FontAwesomeIcon).mount('#app');
