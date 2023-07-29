@@ -19,15 +19,15 @@ onMounted(async () => {
 </script>
 
 <template lang="pug">
-.flex.flex-col.flex-1.h-screen.overflow-y-auto.w-screen
-  header.fixed.top-0.w-screen
+.relative.flex.flex-col.flex-1.h-screen.overflow-y-auto.w-full
+  header.absolute.top-0.w-full
     HeaderBar
   main.flex.flex-1.justify-center.pt-32.pb-32
     div(v-if="users")
-      card-list(v-if="pageStore.listType === 'card-grid'" :users="users")
+      card-list(v-if="pageStore.listType === 'grid'" :users="users")
   footer.fixed.bottom-0.w-screen
     PageFooter(
-      :page-length="totalPages"
+      :page-length="10"
     )
 </template>
 
