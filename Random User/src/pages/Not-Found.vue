@@ -1,6 +1,5 @@
 <template lang="pug">
-.container.bg-gray-300.max-w-full
-  router-view
+div 404 - Not Found
 </template>
 
 <script setup lang="ts"></script>

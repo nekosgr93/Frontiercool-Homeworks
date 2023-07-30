@@ -4,12 +4,7 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
   },
-  extends: [
-    'plugin:vue/strongly-recommended',
-    '@vue/typescript/recommended',
-    'plugin:vue-pug/vue3-recommended',
-    'prettier',
-  ],
+  extends: ['plugin:vue/strongly-recommended', 'plugin:vue-pug/vue3-recommended', 'prettier'],
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'prettier/prettier': 'error',

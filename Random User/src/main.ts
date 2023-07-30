@@ -18,9 +18,10 @@ import {
   faHeart as fasHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as fagHeart } from '@fortawesome/free-regular-svg-icons';
+import { router } from './routers/root-router';
 
 /* add icons to the library */
 library.add(faSort, faGrip, faList, faChevronLeft, faChevronRight, fasHeart, fagHeart);
 const pinia = createPinia();
 
-createApp(App).use(pinia).component('font-awesome-icon', FontAwesomeIcon).mount('#app');
+createApp(App).use(pinia).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app');

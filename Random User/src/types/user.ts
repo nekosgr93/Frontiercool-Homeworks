@@ -23,6 +23,9 @@ export type User = {
       description: string;
     };
   };
+  login: {
+    uuid: string;
+  };
   email: string;
   dob: {
     date: Date;

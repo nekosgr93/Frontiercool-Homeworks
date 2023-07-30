@@ -1,21 +1,24 @@
 <template lang="pug">
-button(@mouseenter="hover = true" @mouseleave="hover = false" @click="$emit('heart-click')")
-  font-awesome-icon.text-red-500.text-xl(
+button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="hover = false" @click="$emit('heart-click')")
+  font-awesome-icon.text-red-500(
     :bounce="hover"
-    v-if="active" 
-    :icon="['fas', 'heart']"
+    :icon="[active ? 'fas' : 'far', 'heart']"
+    :class="{ 'text-3xl': size === 'large', 'text-2xl': size === 'medium' }"
   )
-  font-awesome-icon.text-red-500.text-xl(
-    :bounce="hover"
-    v-else 
-    :icon="['far', 'heart']")
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-defineProps<{
-  active?: boolean;
-}>();
+withDefaults(
+  defineProps<{
+    active?: boolean;
+    size?: 'large' | 'medium';
+  }>(),
+  {
+    active: false,
+    size: 'medium',
+  },
+);
 const emit = defineEmits(['heart-click']);
 const hover = ref(false);
 </script>
