@@ -9,40 +9,72 @@
         p.text-white.align-middle Show:
       SelectBox(
         :options="[10, 30, 50].map(v => ({ label: v.toString(), value: v }))" 
-        v-model="pageSize")
-    ListTypeTab(:options=[{ icon: 'grip', value: 'grid' }, { icon: 'list', value: 'list' }] v-model="listType")
+        v-model="currentPageSize")
+    ListTypeTab(:options=[{ icon: 'grip', value: 'grid' }, { icon: 'list', value: 'list' }] v-model="currentListType")
 
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import type { Tab } from '../tabs/tab.type';
-import { usePageSettingStore } from '@/stores/page-setting.store';
+import { ref, watch, computed } from 'vue';
+import type { NavTabType } from '../tabs/nav-tab.type';
+import { useRouter } from 'vue-router';
+import { useRouteInfo } from '@/composables/use-route-info';
 import TabsGroup from '../tabs/Tabs-Group.vue';
 import SelectBox from '../select-box/Select-Box.vue';
 import ListTypeTab from './List-Type-Tab.vue';
 
-const pages: Tab[] = [
+const pages: NavTabType[] = [
   {
     label: 'All',
+    navTo: 'user-list',
   },
   {
     label: 'Favorite',
+    navTo: 'favorite-users',
   },
 ];
+const router = useRouter();
+const { currentPage, pageSize, listType } = useRouteInfo();
 
 const currentTabIndex = ref<number>(0);
-const pageStore = usePageSettingStore();
 
-const pageSize = computed({
-  get: () => pageStore.pageSetting.pageSize,
-  set: v => (pageStore.pageSetting.pageSize = v),
+const currentPageSize = computed({
+  get: () => pageSize.value,
+  set: newSize =>
+    router.push({
+      name: pages[currentTabIndex.value].navTo,
+      query: {
+        page: 1,
+        pageSize: newSize,
+        listType: listType.value,
+      },
+    }),
 });
 
-const listType = computed({
-  get: () => pageStore.pageSetting.listType,
-  set: v => (pageStore.pageSetting.listType = v),
+const currentListType = computed({
+  get: () => listType.value,
+  set: newType =>
+    router.push({
+      name: pages[currentTabIndex.value].navTo,
+      query: {
+        page: currentPage.value,
+        pageSize: pageSize.value,
+        listType: newType,
+      },
+    }),
+});
+
+watch(currentTabIndex, (newIndex: number) => {
+  router.push({
+    name: pages[newIndex].navTo,
+    query: {
+      page: 1,
+      pageSize: pageSize.value,
+      listType: listType.value,
+    },
+  });
 });
 </script>
 
 <style scoped></style>
+../tabs/nav-tab.type

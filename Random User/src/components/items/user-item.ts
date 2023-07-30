@@ -5,5 +5,4 @@ export type UserItem = {
     large: string;
     medium: string;
   };
-  favorite?: boolean;
 };

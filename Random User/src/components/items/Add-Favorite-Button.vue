@@ -1,8 +1,9 @@
 <template lang="pug">
-button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="hover = false" @click="$emit('heart-click')")
+button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="hover = false" @click="$emit('add-favorite')")
   font-awesome-icon.text-red-500(
     :bounce="hover"
-    :icon="[active ? 'fas' : 'far', 'heart']"
+    :icon="['far', 'heart']"
+    class=["hover:text-red-400"]
     :class="{ 'text-3xl': size === 'large', 'text-2xl': size === 'medium' }"
   )
 </template>
@@ -11,15 +12,13 @@ button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="
 import { ref } from 'vue';
 withDefaults(
   defineProps<{
-    active?: boolean;
     size?: 'large' | 'medium';
   }>(),
   {
-    active: false,
     size: 'medium',
   },
 );
-const emit = defineEmits(['heart-click']);
+const emit = defineEmits(['add-favorite']);
 const hover = ref(false);
 </script>
 

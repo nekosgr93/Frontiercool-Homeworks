@@ -2,7 +2,7 @@
 div
   .flex.flex-1.flex-row.space-x-4
     div(v-for="(tab, index) in tabs" :key="tab.label" :ref="el => tabRefs[index] = el")
-      CustomTab(
+      NavTab(
       :label="tab.label"
       :active="index === modelValue"
       @tab-select="tabChange(index)"
@@ -25,11 +25,11 @@ div
 
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue';
-import type { Tab } from './tab.type';
-import CustomTab from './Custom-Tabs.vue';
+import type { NavTabType } from './nav-tab.type';
+import NavTab from './Nav-Tab.vue';
 
 const props = defineProps<{
-  tabs: Tab[];
+  tabs: NavTabType[];
   modelValue?: number;
 }>();
 
@@ -61,3 +61,4 @@ onMounted(() => {
 </script>
 
 <style scoped></style>
+./nav-tab.type
