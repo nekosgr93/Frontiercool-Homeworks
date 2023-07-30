@@ -1,6 +1,8 @@
 <template lang="pug">
-.flex.flex-1.justify-center.items-center(v-if="!isLoading && users")
-  .flex(class=["2xl:w-9/12"])
+.flex.flex-1.flex-col.justify-center.items-center(v-if="!isLoading && users")
+  .flex.flex-col.space-y-6.px-20(class=["2xl:w-9/12"])
+    .flex.flex-row.w-full.justify-end
+      p.text-lg {{ resultCounter.start }} - {{ resultCounter.end }} of {{ itemTotal }} Results
     List(
       :users="users"
       :list-type="pageStore.pageSetting.listType"
@@ -25,10 +27,10 @@ const favoriteStore = useFavoriteUsersStore();
 const router = useRouter();
 const route = useRoute();
 const isLoading = ref(true);
-const totlaLength = 3310;
+const itemTotal = 3310;
 
 const users = ref<UserItem[]>();
-const pageLength = ref(Math.ceil(totlaLength / pageStore.pageSetting.pageSize!));
+const pageLength = computed(() => Math.ceil(itemTotal / pageStore.pageSetting.pageSize!));
 const currentPage = computed({
   get: () => parseInt(route.query.page as string) || 1,
   set: newPage => {
@@ -43,14 +45,26 @@ const currentPage = computed({
   },
 });
 
+const resultCounter = computed<{ start: number; end: number }>(() => {
+  const start = (currentPage.value - 1) * pageStore.pageSetting.pageSize! + 1;
+  let end: number;
+  if (currentPage.value !== pageLength.value) {
+    end = currentPage.value * pageStore.pageSetting.pageSize!;
+  } else {
+    end = itemTotal;
+  }
+
+  return { start, end };
+});
+
 async function getUsers() {
   isLoading.value = true;
   try {
-    const result = await getUserList(
-      currentPage.value,
-      pageStore.pageSetting.pageSize!,
-      pageStore.getPageSeed(currentPage.value),
-    );
+    let querySize = pageStore.pageSetting.pageSize!;
+    if (currentPage.value === pageLength.value) {
+      querySize = itemTotal - resultCounter.value.start;
+    }
+    const result = await getUserList(currentPage.value, querySize, pageStore.getPageSeed(currentPage.value));
     users.value = result.results.map(r => ({
       id: r.login.uuid,
       userName: `${r.name.first} ${r.name.last}`,
@@ -66,11 +80,15 @@ async function getUsers() {
   }
 }
 
-watch(pageStore.pageSetting, newSetting => {
+watch(pageStore.pageSetting, (newSetting, oldSetting) => {
+  let queryPage = currentPage.value;
+  if (newSetting.pageSize !== oldSetting) {
+    queryPage = 1;
+  }
   router.push({
     name: 'user-list',
     query: {
-      page: currentPage.value,
+      page: queryPage,
       ...newSetting,
     },
   });

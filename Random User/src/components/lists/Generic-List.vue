@@ -1,5 +1,5 @@
 <template lang="pug">
-div.w-full.px-20
+div.w-full
   div(v-if="listType==='grid'" class=["grid", "md:gap-4", "xl:gap-8","sm:grid-cols-2", "md:grid-cols-4", "xl:grid-cols-5"])
     UserCard(
       v-for="user in users" 
