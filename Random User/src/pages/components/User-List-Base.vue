@@ -1,24 +1,22 @@
 <template lang="pug">
-.flex.flex-1(v-if="!isLoading")
-  .flex.flex-1.flex-col.justify-center.items-center(v-if="userData.users.value.length > 0")
-    .flex.flex-col.space-y-6.px-20(class=["w-8/12"])
-      .flex.flex-row.justify-end
-        p.text-lg {{ resultCounter.start }} - {{ resultCounter.end }} of {{ userData.totalItems }} Results
-      List(
-        :users="userData.users.value"
-        :list-type="listType"
-      )
+.flex.flex-1.justify-center.items-center(v-if="!isLoading")
+  .flex.flex-col.justify-center.items-center.space-y-6.px-20(v-if="userData.users.value.length > 0")
+    .flex.flex-row.justify-end.w-full
+      p.text-lg {{ resultCounter.start }} - {{ resultCounter.end }} of {{ userData.totalItems }} Results
+    GridList(v-if="listType === 'grid'" :users="userData.users.value")
+    RegularList(v-else :users="userData.users.value" class=["sm:min-w-[500px]", "md:min-w-[800px]", "lg:min-w-[1000px]"])
     .fixed.bottom-0.w-full
       .flex.flex-1.items-center.justify-center.py-4.bg-slate-100
         EllpsisPagination(:page-length="userData.totalPages.value" v-model="currentPage")
-  div(v-else) {{  emptyMessage }}
+  .flex.items-center.justify-center(v-else) 
+    p.text-xl {{  emptyMessage }}
 div(v-else) Loading
 </template>
 
 <script setup lang="ts">
 import { ref, watchEffect, computed, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import List from '@/components/lists/Generic-List.vue';
+import { GridList, RegularList } from '@/components/lists';
 import EllpsisPagination from '@/components/pagination/Ellipsis-Pagination.vue';
 import { UserDataKey } from '../use-user-data';
 import { useRouteInfo } from '@/composables/use-route-info';

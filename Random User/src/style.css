@@ -9,4 +9,7 @@
   .active-tab-indicator {
     @apply bg-orange-600
   }
+  .remove-fa-icon-margin {
+    --fa-li-margin: 0;
+  };
 }

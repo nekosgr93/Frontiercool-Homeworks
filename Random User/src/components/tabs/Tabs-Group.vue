@@ -15,7 +15,7 @@ div
       'transition-all',
       'duration-200',
       'ease-in-out',
-      'rounded-t-full',
+      'rounded-md',
       'h-1'
     ]
     :style="indicatorStyle"
