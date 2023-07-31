@@ -11,6 +11,15 @@ export async function getUserList(page: number, size: number, seed?: string) {
   let querySize = size;
   const totalPages = Math.ceil(totalItems / size);
 
+  if (page > totalPages) {
+    return {
+      results: [],
+      info: undefined,
+      totalItems,
+      totalPages,
+    };
+  }
+
   if (page === totalPages) {
     // calc remain results
     querySize = totalItems - (page - 1) * size;

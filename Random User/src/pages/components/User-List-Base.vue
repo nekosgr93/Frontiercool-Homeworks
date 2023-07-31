@@ -22,7 +22,7 @@
         class=["w-full"]
         @item-click="showUserDetail(index)"
       )
-    Modal(:show="modalOpen")
+    Modal(:show="modalOpen" @backdrop-click="closeModal")
       UserDetail(
         :id="selectedUserIndex.id"
         :user-name="selectedUserIndex.userName"

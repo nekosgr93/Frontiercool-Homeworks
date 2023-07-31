@@ -3,9 +3,9 @@ div
   .flex.flex-1.flex-row.space-x-4
     div(v-for="(tab, index) in tabs" :key="tab.label" :ref="el => tabRefs[index] = el")
       NavTab(
-      :label="tab.label"
-      :active="index === modelValue"
-      @tab-select="tabChange(index)"
+        :label="tab.label"
+        :active="index === modelValue"
+        @tab-select="tabChange(index)"
       )
   div(
     class=[
@@ -49,9 +49,7 @@ function moveIndicator(tabIndex: number) {
 }
 
 function tabChange(newTabIndex: number) {
-  if (newTabIndex !== props.modelValue) {
-    emit('update:modelValue', newTabIndex);
-  }
+  emit('update:modelValue', newTabIndex);
 }
 
 watchEffect(() => {

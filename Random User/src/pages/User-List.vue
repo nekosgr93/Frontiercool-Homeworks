@@ -25,7 +25,9 @@ async function getUsers(currentPage: number, pageSize: number) {
       medium: r.picture.medium,
     },
   }));
-  pageStore.setPageSeed(currentPage, result.info.seed);
+  if (result.info) {
+    pageStore.setPageSeed(currentPage, result.info.seed);
+  }
   users.value = _users;
   totalItems.value = result.totalItems;
   totalPages.value = result.totalPages;

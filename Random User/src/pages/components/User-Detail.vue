@@ -6,6 +6,7 @@
   .flex.flex-col.flex-1.space-y-4.items-center.p-4
     img.rounded-lg(:src="userPhoto.large" class=["w-[200px]"])
     h1.text-2xl {{ userName  }}
+
     button.flex.flex-row.p-4.rounded-lg.border.border-red-500.text-red-500.items-center.space-x-2(
       v-if="isFavorited"
       class=["hover:border-0", "hover:bg-slate-400", "hover:text-white"]
