@@ -1,5 +1,5 @@
 <template lang="pug">
-button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="hover = false" @click="$emit('remove-favorite')")
+button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="hover = false" @click.stop="$emit('remove-favorite')")
   font-awesome-icon.text-red-500(
     :icon="['fas', 'heart']"
     class=["hover:text-red-400"]

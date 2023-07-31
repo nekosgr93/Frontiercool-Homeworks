@@ -16,12 +16,13 @@ import {
   faChevronRight,
   faChevronLeft,
   faHeart as fasHeart,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as fagHeart } from '@fortawesome/free-regular-svg-icons';
 import { router } from './routers/root-router';
 
 /* add icons to the library */
-library.add(faSort, faGrip, faList, faChevronLeft, faChevronRight, fasHeart, fagHeart);
+library.add(faSort, faGrip, faList, faChevronLeft, faChevronRight, fasHeart, fagHeart, faXmark);
 const pinia = createPinia();
 
 createApp(App).use(pinia).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app');

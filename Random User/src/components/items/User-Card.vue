@@ -1,6 +1,6 @@
 <template lang="pug">
 .flex.flex-col.items-center.justify-center.bg-gray-500.p-4.rounded-lg.space-y-4.py-8.w-52(
-  class=[""]
+  class=["hover:bg-gray-400"]
   @click="$emit('item-click')"
   )
   img.rounded-full.border-gray-100.shadow-sm.w-28.h-28(:src="userPhoto.large" alt='user image')

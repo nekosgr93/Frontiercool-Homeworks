@@ -1,5 +1,8 @@
 <template lang="pug">
-.flex.flex-row.bg-gray-500.px-10.rounded-lg.py-8.justify-between.items-center(@click="$emit('item-click')")
+.flex.flex-row.bg-gray-500.px-10.rounded-lg.py-8.justify-between.items-center(
+  class=["hover:bg-gray-400"]
+  @click="$emit('item-click')"
+)
   .flex.space-x-2
     img.rounded-full.border-gray-100.shadow-sm.w-28.h-28(:src="userPhoto.medium" alt='user image')
     .flex.justify-center.items-center(class=["md:w-36"])

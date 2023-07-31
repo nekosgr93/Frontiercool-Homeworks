@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { computed } from 'vue';
 import type { NavTabType } from '../tabs/nav-tab.type';
 import { useRouter } from 'vue-router';
 import { useRouteInfo } from '@/composables/use-route-info';
@@ -34,9 +34,21 @@ const pages: NavTabType[] = [
   },
 ];
 const router = useRouter();
-const { currentPage, pageSize, listType } = useRouteInfo();
+const { currentPage, pageSize, listType, name } = useRouteInfo();
 
-const currentTabIndex = ref<number>(0);
+const currentTabIndex = computed({
+  get: () => pages.findIndex(p => p.navTo === name.value),
+  set: newTabIndex => {
+    router.push({
+      name: pages[newTabIndex].navTo,
+      query: {
+        page: 1,
+        pageSize: pageSize.value,
+        listType: listType.value,
+      },
+    });
+  },
+});
 
 const currentPageSize = computed({
   get: () => pageSize.value,
@@ -62,17 +74,6 @@ const currentListType = computed({
         listType: newType,
       },
     }),
-});
-
-watch(currentTabIndex, (newIndex: number) => {
-  router.push({
-    name: pages[newIndex].navTo,
-    query: {
-      page: 1,
-      pageSize: pageSize.value,
-      listType: listType.value,
-    },
-  });
 });
 </script>
 

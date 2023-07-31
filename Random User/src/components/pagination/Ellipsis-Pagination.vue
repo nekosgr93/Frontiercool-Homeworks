@@ -6,7 +6,7 @@
     v-for="page in pages"
     :class="{active: page === modelValue}"
     :key="page" 
-    :disabled="page === '...'"
+    :disabled="page === '...' || page === modelValue"
     @click="$emit('update:modelValue', page)"
     )
     p.text-xl {{ page }}
@@ -29,7 +29,7 @@ const pages = computed(() => {
 
 function calcPagination(currentPage: number) {
   if (props.pageLength < 7) {
-    return Array.from({ length: 7 }, (_, i) => i + 1);
+    return Array.from({ length: props.pageLength }, (_, i) => i + 1);
   } else {
     const _pages: (number | '...')[] = [1];
     const pre = currentPage - 1;

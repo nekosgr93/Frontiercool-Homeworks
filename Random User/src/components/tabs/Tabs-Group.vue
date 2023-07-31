@@ -24,7 +24,7 @@ div
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted, watchEffect } from 'vue';
 import type { NavTabType } from './nav-tab.type';
 import NavTab from './Nav-Tab.vue';
 
@@ -50,13 +50,12 @@ function moveIndicator(tabIndex: number) {
 
 function tabChange(newTabIndex: number) {
   if (newTabIndex !== props.modelValue) {
-    moveIndicator(newTabIndex);
     emit('update:modelValue', newTabIndex);
   }
 }
 
-onMounted(() => {
-  moveIndicator(0);
+watchEffect(() => {
+  moveIndicator(props.modelValue!);
 });
 </script>
 

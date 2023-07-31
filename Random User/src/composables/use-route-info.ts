@@ -9,6 +9,8 @@ export function useRouteInfo() {
   const pageSize = ref<number>();
   const listType = ref<ListDisplayType>();
 
+  const name = ref<string>();
+
   watch(
     () => route.query.page,
     () => {
@@ -58,5 +60,14 @@ export function useRouteInfo() {
     { immediate: true },
   );
 
-  return { currentPage, pageSize, listType };
+  watch(
+    () => route.name,
+    () => {
+      const queryName = route.name;
+      name.value = queryName as string;
+    },
+    { immediate: true },
+  );
+
+  return { currentPage, pageSize, listType, name };
 }
