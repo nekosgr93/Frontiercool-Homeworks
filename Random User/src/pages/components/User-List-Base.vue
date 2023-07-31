@@ -34,7 +34,9 @@
         EllpsisPagination(:page-length="userData.totalPages.value" v-model="currentPage")
   .flex.items-center.justify-center(v-else) 
     p.text-xl {{  emptyMessage }}
-div(v-else) Loading
+.flex.flex-col.items-center.justify-center.space-y-4(v-else)
+  LoadingSpinner
+  h1.text-xl.font-medium Loading
 </template>
 
 <script setup lang="ts">
@@ -45,6 +47,7 @@ import { GridList, RegularList } from '@/components/lists';
 import { UserCard, UserListItem } from '@/components/items';
 import UserDetail from './User-Detail.vue';
 import EllpsisPagination from '@/components/pagination/Ellipsis-Pagination.vue';
+import LoadingSpinner from '@/components/spinners/Loading-Spinner.vue';
 import { UserDataKey } from '../use-user-data';
 import { useRouteInfo } from '@/composables/use-route-info';
 import { useModal } from '@/composables/use-model';
