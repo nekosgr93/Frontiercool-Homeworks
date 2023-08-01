@@ -2,7 +2,7 @@
 .flex.flex-col.flex-1.h-screen.overflow-y-auto
   header.sticky.top-0.w-full.z-50
     HeaderBar
-  main.flex.flex-1.justify-center.pt-16
+  main.flex.flex-1.justify-center
     router-view
 </template>
 

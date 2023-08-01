@@ -5,7 +5,7 @@ const userServer = axios.create({
   baseURL: 'https://randomuser.me/api/',
 });
 
-const totalItems = 3310;
+const totalItems = 3010;
 
 export async function getUserList(page: number, size: number, seed?: string) {
   let querySize = size;

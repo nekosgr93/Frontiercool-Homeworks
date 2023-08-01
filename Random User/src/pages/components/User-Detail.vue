@@ -1,6 +1,6 @@
 <template lang="pug">
 .flex.flex-col.py-2.px-3.bg-slate-100.rounded-lg.space-y-1(class=["w-[400px]"])
-  .flex.items-end
+  .flex.justify-end
     button.flex.items-center.justify-center(@click="$emit('close')")
       font-awesome-icon.text-xl(:icon="['fas', 'xmark']" class=["hover:text-slate-500"])
   .flex.flex-col.flex-1.space-y-4.items-center.p-4
