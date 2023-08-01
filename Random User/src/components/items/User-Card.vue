@@ -8,8 +8,10 @@
   .flex.flex-row.space-x-2.justify-center.items-center
     .flex.justify-center(class=["xl:w-36"])
       h1.text-gray-50.font-semibold.truncate {{ userName }}
-    AddFavoriteBtn(v-if="!favorited" size="medium" @add-favorite="favoriteStore.addToFavorites(id, userName, userPhoto)")
-    RemoveFavoriteBtn(v-else size="medium" @remove-favorite="favoriteStore.removeFromFavorites(id)")
+    HoverTooltip(v-if="!favorited" text="Add to favorites")
+      AddFavoriteBtn(size="medium" @add-favorite="favoriteStore.addToFavorites(id, userName, userPhoto)")
+    HoverTooltip(v-else text="Remove from varorites")
+      RemoveFavoriteBtn(size="medium" @remove-favorite="favoriteStore.removeFromFavorites(id)")
 </template>
 
 <script setup lang="ts">
@@ -17,6 +19,7 @@ import { computed } from 'vue';
 import type { UserItem } from './user-item';
 import AddFavoriteBtn from './Add-Favorite-Button.vue';
 import RemoveFavoriteBtn from './Remove-Favorite-Button.vue';
+import HoverTooltip from '@/components/tooltip/Hover-Tooltip.vue';
 import { useFavoriteUsersStore } from '@/stores';
 const props = defineProps<UserItem>();
 const emit = defineEmits(['item-click']);

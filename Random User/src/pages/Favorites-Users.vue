@@ -3,7 +3,7 @@ User-List-Base(empty-message="You didn't add any favorite users yet")
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref, watch } from 'vue';
+import { computed, provide, watch } from 'vue';
 import UserListBase from './components/User-List-Base.vue';
 import { useFavoriteUsersStore } from '@/stores';
 import type { UserItem } from '@/components/items/user-item';

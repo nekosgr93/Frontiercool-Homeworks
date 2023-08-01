@@ -2,7 +2,7 @@
 button.flex.justify-center.items-center(@mouseenter="hover = true" @mouseleave="hover = false" @click.stop="$emit('remove-favorite')")
   font-awesome-icon.text-red-500(
     :icon="['fas', 'heart']"
-    class=["hover:text-red-400"]
+    class=["hover:text-gray-300"]
     :class="{ 'text-3xl': size === 'large', 'text-2xl': size === 'medium' }"
   )
 </template>
