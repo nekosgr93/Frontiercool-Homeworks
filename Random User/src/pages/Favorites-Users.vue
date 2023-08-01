@@ -3,14 +3,16 @@ User-List-Base(empty-message="You didn't add any favorite users yet")
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue';
+import { computed, provide, ref, watch } from 'vue';
 import UserListBase from './components/User-List-Base.vue';
 import { useFavoriteUsersStore } from '@/stores';
 import type { UserItem } from '@/components/items/user-item';
 import { useRouteInfo } from '@/composables/use-route-info';
 import { UserDataKey } from './use-user-data';
+import { useRouter } from 'vue-router';
 
-const { currentPage, pageSize } = useRouteInfo();
+const { currentPage, pageSize, name, listType } = useRouteInfo();
+const router = useRouter();
 const favoriteStore = useFavoriteUsersStore();
 
 const users = computed<UserItem[]>(() => {
@@ -19,6 +21,10 @@ const users = computed<UserItem[]>(() => {
     return { id: key, ...user };
   });
   if (_users && _users.length > 0) {
+    if (currentPage.value! > totalPages.value) {
+      return [];
+    }
+
     const start = (currentPage.value! - 1) * pageSize.value!;
     let end: number;
 
@@ -33,15 +39,33 @@ const users = computed<UserItem[]>(() => {
     return [];
   }
 });
-const totalPages = ref<number>();
-const totalItems = ref<number>();
+const totalPages = computed<number>(() => {
+  const _users = Object.keys(favoriteStore.favoriteUsers);
+  return Math.ceil(_users.length / pageSize.value!);
+});
+const totalItems = computed<number>(() => {
+  const _users = Object.keys(favoriteStore.favoriteUsers);
+  return _users.length;
+});
 
 async function getFavoriteUsers(currentPage: number, pageSize: number) {
-  const _users = Object.keys(favoriteStore.favoriteUsers);
-
-  totalItems.value = _users.length;
-  totalPages.value = Math.ceil(_users.length / pageSize);
+  // const _users = Object.keys(favoriteStore.favoriteUsers);
+  // totalItems.value = _users.length;
+  // totalPages.value = Math.ceil(_users.length / pageSize);
 }
+
+watch(users, () => {
+  if (users.value && users.value.length < 1 && currentPage.value! > 1) {
+    router.push({
+      name: name.value,
+      query: {
+        page: currentPage.value! - 1,
+        pageSize: pageSize.value,
+        listType: listType.value!,
+      },
+    });
+  }
+});
 
 provide(UserDataKey, {
   getUsers: getFavoriteUsers,
