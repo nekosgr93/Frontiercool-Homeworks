@@ -48,11 +48,7 @@ const totalItems = computed<number>(() => {
   return _users.length;
 });
 
-async function getFavoriteUsers(currentPage: number, pageSize: number) {
-  // const _users = Object.keys(favoriteStore.favoriteUsers);
-  // totalItems.value = _users.length;
-  // totalPages.value = Math.ceil(_users.length / pageSize);
-}
+async function getFavoriteUsers() {}
 
 watch(users, () => {
   if (users.value && users.value.length < 1 && currentPage.value! > 1) {

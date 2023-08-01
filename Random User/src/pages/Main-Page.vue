@@ -1,8 +1,8 @@
 <template lang="pug">
-.relative.flex.flex-col.flex-1.h-screen.overflow-y-auto.w-full
-  header.fixed.top-0.w-full
+.flex.flex-col.flex-1.h-screen.overflow-y-auto
+  header.sticky.top-0.w-full.z-50
     HeaderBar
-  main.flex.flex-1.justify-center.pt-28.pb-32
+  main.flex.flex-1.justify-center.pt-16
     router-view
 </template>
 

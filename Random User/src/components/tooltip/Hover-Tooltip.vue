@@ -6,7 +6,7 @@
       "min-w-max",
       "group-hover:visible",
       "group-hover:transition-opacity",
-      "group-hover:delay-1000",
+      "group-hover:delay-700",
       "group-hover:opacity-100"
     ]
     :class=`{ 

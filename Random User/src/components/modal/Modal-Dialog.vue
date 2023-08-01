@@ -1,6 +1,6 @@
 <template lang="pug">
 teleport(to="#modal")
-  .fixed.inset-0.bg-black.bg-opacity-50(v-if="show" @click="handleBackdropClick")
+  .fixed.inset-0.bg-black.bg-opacity-50(v-if="show" @click="handleBackdropClick" class=["z-[999]"])
     .flex.flex-1.justify-center.items-center.h-screen
       div.flex.justify-center.items-center(class=["w-min"] ref="modalRef")
         slot

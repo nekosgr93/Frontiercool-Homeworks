@@ -1,5 +1,5 @@
 <template lang="pug">
-.container.bg-gray-300.max-w-full
+.bg-gray-300
   router-view
 </template>
 

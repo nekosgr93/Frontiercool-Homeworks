@@ -1,38 +1,39 @@
 <template lang="pug">
-.flex.flex-1.justify-center.items-center(v-if="!isLoading")
-  .flex.flex-col.justify-center.items-center.space-y-6.px-20(v-if="userData.users.value.length > 0")
-    .flex.flex-row.justify-end.w-full
-      p.text-lg {{ resultCounter.start }} - {{ resultCounter.end }} of {{ userData.totalItems }} Results
-    GridList(v-if="listType === 'grid'")
-      UserCard(
-        v-for="(user, index) in userData.users.value" 
-        :key="user.id" 
-        :id="user.id"
-        :user-name="user.userName"
-        :user-photo="user.userPhoto"
-        @item-click="showUserDetail(index)"
-      )
-    RegularList(v-else :users="userData.users.value" class=["sm:min-w-[500px]", "md:min-w-[800px]", "lg:min-w-[1000px]"])
-      UserListItem(
-        v-for="(user, index) in userData.users.value" 
-        :key="user.id" 
-        :id="user.id"
-        :user-name="user.userName"
-        :user-photo="user.userPhoto"
-        class=["w-full"]
-        @item-click="showUserDetail(index)"
-      )
-    Modal(:show="modalOpen" @backdrop-click="closeModal")
-      UserDetail(
-        :id="selectedUserIndex.id"
-        :user-name="selectedUserIndex.userName"
-        :user-photo="selectedUserIndex.userPhoto"
-        @close="closeModal"
-      )
-    .fixed.bottom-0.w-full
+.flex.flex-1(v-if="!isLoading")
+  .flex.flex-1.flex-col.justify-center.items-center(v-if="userData.users.value.length > 0")
+    .flex.flex-col.justify-center.items-center.space-y-6.px-20.w-fit
+      .flex.flex-row.justify-end.w-full
+        p.text-lg {{ resultCounter.start }} - {{ resultCounter.end }} of {{ userData.totalItems }} Results
+      GridList(v-if="listType === 'grid'")
+        UserCard(
+          v-for="(user, index) in userData.users.value" 
+          :key="user.id" 
+          :id="user.id"
+          :user-name="user.userName"
+          :user-photo="user.userPhoto"
+          @item-click="showUserDetail(index)"
+        )
+      RegularList(v-else :users="userData.users.value" class=["sm:min-w-[500px]", "md:min-w-[800px]", "lg:min-w-[1000px]"])
+        UserListItem(
+          v-for="(user, index) in userData.users.value" 
+          :key="user.id" 
+          :id="user.id"
+          :user-name="user.userName"
+          :user-photo="user.userPhoto"
+          class=["w-full"]
+          @item-click="showUserDetail(index)"
+        )
+      Modal(:show="modalOpen" @backdrop-click="closeModal")
+        UserDetail(
+          :id="selectedUserIndex.id"
+          :user-name="selectedUserIndex.userName"
+          :user-photo="selectedUserIndex.userPhoto"
+          @close="closeModal"
+        )
+    .sticky.bottom-0.w-full
       .flex.flex-1.items-center.justify-center.py-4.bg-slate-100
         EllpsisPagination(:page-length="userData.totalPages.value" v-model="currentPage")
-  .flex.items-center.justify-center(v-else) 
+  .flex.flex-1.items-center.justify-center(v-else) 
     p.text-xl {{  emptyMessage }}
 .flex.flex-col.items-center.justify-center.space-y-4(v-else)
   LoadingSpinner

@@ -7,6 +7,9 @@ export default {
         sans: ['Inter var'],
       },
     },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 };
