@@ -5,35 +5,35 @@
 ### Installation
 
 Install dependencies using yarn
-```
+```sh
 yarn install
 ```
 
 or using npm
-```
+```sh
 npm install
 ```
 
 ## Usage
 
 Run following command to build the bundle
-```
+```sh
 yarn build
 ```
 
 or using npm
-```
+```sh
 npm run build
 ```
 
 
 Then 
-```
+```sh
 yarn preview
 ```
 
 or
-```
+```sh
 npm run preview
 ```
 
