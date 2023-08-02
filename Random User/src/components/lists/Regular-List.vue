@@ -1,5 +1,5 @@
 <template lang="pug">
-.space-y-6.flex.flex-col.items-center
+.space-y-6.flex.flex-col
   slot
 </template>
 

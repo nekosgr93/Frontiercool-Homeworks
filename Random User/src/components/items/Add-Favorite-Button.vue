@@ -18,7 +18,7 @@ withDefaults(
     size: 'medium',
   },
 );
-const emit = defineEmits(['add-favorite']);
+defineEmits(['add-favorite']);
 const hover = ref(false);
 </script>
 

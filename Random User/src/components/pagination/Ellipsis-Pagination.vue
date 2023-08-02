@@ -21,7 +21,7 @@ const props = defineProps<{
   modelValue: number;
 }>();
 
-const emit = defineEmits(['update:modelValue']);
+defineEmits(['update:modelValue']);
 
 const pages = computed(() => {
   return calcPagination(props.modelValue);

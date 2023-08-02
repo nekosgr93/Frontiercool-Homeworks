@@ -1,11 +1,11 @@
 <template lang="pug">
-.flex.flex-col.py-2.px-3.bg-slate-100.rounded-lg.space-y-1(class=["w-[400px]"])
+.flex.flex-col.py-2.px-3.bg-slate-100.rounded-lg.space-y-1.text-sky-950(class=["w-[400px]"])
   .flex.justify-end
     button.flex.items-center.justify-center(@click="$emit('close')")
       font-awesome-icon.text-xl(:icon="['fas', 'xmark']" class=["hover:text-slate-500"])
   .flex.flex-col.flex-1.space-y-4.items-center.p-4
     img.rounded-lg(:src="userPhoto.large" class=["w-[200px]"])
-    h1.text-2xl {{ userName  }}
+    h1.text-2xl {{ userName }}
 
     button.flex.flex-row.p-4.rounded-lg.border.border-red-500.text-red-500.items-center.space-x-2(
       v-if="isFavorited"
@@ -32,7 +32,7 @@ import { computed } from 'vue';
 const props = defineProps<UserItem>();
 const favoriteStore = useFavoriteUsersStore();
 const isFavorited = computed(() => !!favoriteStore.favoriteUsers[props.id]);
-const emit = defineEmits(['close']);
+defineEmits(['close']);
 </script>
 
 <style scoped></style>

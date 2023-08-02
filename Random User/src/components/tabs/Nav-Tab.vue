@@ -1,6 +1,6 @@
 <template lang="pug">
 button(
-  class=["text-xl", "py-1", "px-2", "text-white",]
+  class=["text-xl", "py-1", "px-2", "text-white", "hover:text-orange-400"]
   :class="{ 'active-tab': active }"
   @click="$emit('tab-select')")
   p {{ label }}
@@ -11,7 +11,7 @@ defineProps<{
   label: string;
   active?: boolean;
 }>();
-const emit = defineEmits(['tab-select']);
+defineEmits(['tab-select']);
 </script>
 
 <style scoped></style>

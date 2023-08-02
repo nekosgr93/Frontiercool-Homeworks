@@ -1,7 +1,7 @@
 <template lang="pug">
 .flex.flex-1(v-if="!isLoading")
   .flex.flex-1.flex-col.justify-center.items-center(v-if="userData.users.value.length > 0")
-    .flex.flex-1.flex-col.justify-center.items-center.space-y-6.px-20.py-12.w-fit
+    .flex.flex-1.flex-col.items-center.space-y-6.px-20.py-12.w-fit
       .flex.flex-row.justify-end.w-full
         p.text-lg {{ resultCounter.start }} - {{ resultCounter.end }} of {{ userData.totalItems }} Results
       GridList(v-if="listType === 'grid'")
