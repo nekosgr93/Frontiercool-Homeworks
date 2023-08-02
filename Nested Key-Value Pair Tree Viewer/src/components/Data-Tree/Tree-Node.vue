@@ -1,5 +1,5 @@
 <template lang="pug">
-li.flex.space-x-2.ml-4(:class="{ 'flex-col': hasNestedValue }")
+li.flex.space-x-2(:class="{ 'flex-col': hasNestedValue }")
   .flex.flex-row
     p {{ dataKey }}: 
     template(v-if="hasNestedValue")
@@ -7,7 +7,7 @@ li.flex.space-x-2.ml-4(:class="{ 'flex-col': hasNestedValue }")
       button(v-else @click="blockCollopse = true") [-]
 
   template(v-if="hasNestedValue")
-    ul.list-none.list-inside(v-if="!blockCollopse")
+    ul.list-none.list-inside.pl-14(v-if="!blockCollopse")
       TreeNode(v-for="key in Object.keys(dataValue)" :key="key" :data-key="key" :data-value="dataValue[key]")
   template(v-else)
     p {{ dataValue }}

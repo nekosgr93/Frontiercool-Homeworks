@@ -1,5 +1,5 @@
 <template lang="pug">
-button.rounded-md.p-1.text-xl.bold.bg-slate-100.text-black.shadow-md(@click="$emit('btn-click')" class=["hover:bg-slate-400"])
+button.flex.justify-center.items-center.rounded-md.p-2.text-xl.bold.bg-slate-100.text-black.shadow-md(@click="$emit('btn-click')" class=["hover:bg-slate-400"])
   slot
 </template>
 
