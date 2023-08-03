@@ -1,6 +1,7 @@
 <template lang="pug">
 .flex.flex-col.w-full.space-y-2
-  input.flex.justify-center.items-center.p-3.border-2.shadow-md.rounded-md.text-black.w-full(
+  input.flex.justify-center.items-center.py-2.px-3.border.rounded-md.text-slate-200.w-full.bg-transparent(
+    type="text"
     :value="modelValue" 
     @input="$emit('update:modelValue', $event.target.value)" 
     :class="{ 'border-red-500': !!errorMessage, 'focus:outline-none': !!errorMessage, 'focus:ring-0': !!errorMessage }")

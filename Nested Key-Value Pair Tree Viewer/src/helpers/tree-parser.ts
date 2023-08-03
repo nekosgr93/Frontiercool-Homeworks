@@ -60,7 +60,7 @@ function recursiveSetter(key: string, value: string, data: DataTreeType, pairInd
     throw new ParsingError('No_Consecutive_Dot', 'Detect consecutive dot in your key.', pairIndex);
   }
 
-  const trimKey = splitKeys[0].replace(/^\s+|\s+$|\s+(?=\s)/g, '');
+  const trimKey = (splitKeys[0] || '').replace(/^\s+|\s+$|\s+(?=\s)/g, '');
 
   if (splitKeys.length > 1) {
     if (data[trimKey]) {

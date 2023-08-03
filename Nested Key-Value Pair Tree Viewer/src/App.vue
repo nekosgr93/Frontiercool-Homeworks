@@ -1,5 +1,5 @@
 <template lang="pug">
-.p-8.bg-gray-900.text-slate-300.h-screen.w-full.space-y-4.flex.flex-col
+.p-8.bg-gray-900.text-slate-300.min-h-screen.w-full.space-y-4.flex.flex-col
   h1.text-2xl.bold Nested Key-Value Pair Tree Viewer
 
   .flex.flex-1.flex-row.space-x-8.grow
@@ -7,7 +7,7 @@
       .flex.flex-row.space-x-4.justify-center.w-full(v-for="(pair, i) in keyValuePairs" :key="i")
         InputBlock(v-model="pair[0]" :error-message="parsingError && parsingError.pairIndex === i ? parsingError.message : undefined")
         InputBlock(v-model="pair[1]")
-        FormButton(@btn-click="removePair(i)").w-10.h-10 -
+        FormButton(@btn-click="removePair(i)") -
       FormButton(class=["w-1/2"] @btn-click="addPair") + Add new pair
     MainContainer
       DataTree(v-if="!parsingError" :data-tree="dataTree")
