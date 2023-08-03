@@ -34,11 +34,11 @@ export function treeParser(treeDatas: string[][]) {
 
     const value = treeDatas[i][1];
 
-    if (!value) {
-      continue;
-    }
+    // if (!value) {
+    //   continue;
+    // }
 
-    const trimValue = value.replace(/^\s+|\s+$|\s+(?=\s)/g, '');
+    const trimValue = value ? value.replace(/^\s+|\s+$|\s+(?=\s)/g, '') : '';
 
     recursiveSetter(key, trimValue, tree, i);
   }
@@ -55,7 +55,7 @@ function recursiveSetter(key: string, value: string, data: DataTreeType, pairInd
     throw new ParsingError('No_Dot_Ending', 'Cannot use dot(.) as ending.', pairIndex);
   }
 
-  const splitKeys = key.split('.');
+  const splitKeys = key.match(/[^.]+/g) || [];
   if (splitKeys.length - 1 !== (key.match(/\./g) || []).length) {
     throw new ParsingError('No_Consecutive_Dot', 'Detect consecutive dot in your key.', pairIndex);
   }
