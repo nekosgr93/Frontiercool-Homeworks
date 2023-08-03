@@ -1,5 +1,5 @@
 <template lang="pug">
-div(class=["grid", "place-content-center","sm:gap-4", "xl:gap-8","sm:grid-cols-1", "md:grid-cols-3", "xl:grid-cols-5"])
+div(class=["grid","sm:gap-4", "xl:gap-8","sm:grid-cols-1", "md:grid-cols-3", "xl:grid-cols-5"])
   slot
 </template>
 

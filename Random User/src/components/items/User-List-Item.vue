@@ -1,12 +1,12 @@
 <template lang="pug">
-.flex.flex-row.bg-gray-500.px-10.rounded-lg.py-8.justify-between.items-center(
-  class=["hover:bg-gray-400"]
+.flex.flex-row.bg-white.px-10.rounded-lg.py-8.justify-between.items-center.text-sky-950.shadow-md(
+  class=["hover:bg-sky-950/10"]
   @click="$emit('item-click')"
 )
-  .flex.space-x-2
+  .flex.space-x-8
     img.rounded-full.border-gray-100.shadow-sm.w-28.h-28(:src="userPhoto.medium" alt='user image')
-    .flex.justify-center.items-center(class=["md:w-36"])
-      h1.text-gray-50.font-semibold.truncate {{ userName }}
+    .flex.justify-start.items-center
+      h1.font-semibold {{ userName }}
   HoverTooltip(v-if="!favorited" text="Add to favorites" position="left")
     AddFavoriteBtn(size="large" @add-favorite="favoriteStore.addToFavorites(id, userName, userPhoto)")
   HoverTooltip(v-else text="Remove from varorites" position="left")
@@ -21,7 +21,7 @@ import RemoveFavoriteBtn from './Remove-Favorite-Button.vue';
 import HoverTooltip from '@/components/tooltip/Hover-Tooltip.vue';
 import { useFavoriteUsersStore } from '@/stores';
 const props = defineProps<UserItem>();
-const emit = defineEmits(['item-click']);
+defineEmits(['item-click']);
 const favoriteStore = useFavoriteUsersStore();
 const favorited = computed(() => !!favoriteStore.favoriteUsers[props.id]);
 </script>

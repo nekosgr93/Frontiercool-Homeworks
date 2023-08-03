@@ -1,18 +1,47 @@
-# Vue 3 + TypeScript + Vite
+# Nested Key-Value Pair Tree Viewer
+![](./screen-shot.jpg)
+## Getting Started
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### Installation
 
-## Recommended IDE Setup
+Install dependencies using yarn
+```sh
+yarn install
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+or using npm
+```sh
+npm install
+```
 
-## Type Support For `.vue` Imports in TS
+## Usage
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Run following command to build the bundle
+```sh
+yarn build
+```
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+or using npm
+```sh
+npm run build
+```
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+Then 
+```sh
+yarn preview
+```
+
+or
+```sh
+npm run preview
+```
+
+Open http://localhost:4173/ in your browser to see the result.
+
+## Live Demo
+
+https://df2qfzydlu86g.cloudfront.net/
+
+## 專案心得
+Nesting Tree 的部分有點像 Leet Code 的題目，顯示上用到 Recursive component 的概念，自己另外在表單上加了一些驗證和 error message。

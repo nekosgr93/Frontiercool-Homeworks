@@ -1,5 +1,5 @@
 <template lang="pug">
-.space-y-6.flex.flex-col
+.flex.flex-1.flex-col.p-6.border.border-6.rounded-lg
   slot
 </template>
 
