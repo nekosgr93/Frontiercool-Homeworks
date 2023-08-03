@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.flex-col.items-center.justify-center.bg-white.p-4.rounded-lg.space-y-4.py-8.w-52.text-sky-950.drop-shadow-md(
+.flex.flex-col.items-center.justify-center.bg-white.p-4.rounded-lg.space-y-4.py-8.w-52.text-sky-950.shadow-md(
   class=["hover:bg-sky-950/10"]
   @click.stop="$emit('item-click')"
   )
