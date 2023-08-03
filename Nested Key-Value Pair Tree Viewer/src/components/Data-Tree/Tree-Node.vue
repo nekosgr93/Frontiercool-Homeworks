@@ -10,7 +10,7 @@ li.flex.space-x-2(:class="{ 'flex-col': hasNestedValue }")
     ul.list-none.list-inside.pl-14(v-if="!blockCollopse")
       TreeNode(v-for="key in Object.keys(dataValue)" :key="key" :data-key="key" :data-value="dataValue[key]")
   template(v-else)
-    p {{ dataValue }}
+    p.text-red-300 {{ dataValue }}
 </template>
 
 <script setup lang="ts">

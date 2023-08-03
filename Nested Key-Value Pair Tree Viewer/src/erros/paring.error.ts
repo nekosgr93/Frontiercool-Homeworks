@@ -1,23 +1,11 @@
-export class NoDotStartingError extends Error {
-  constructor() {
-    super('Cannot use dot(.) as starting.');
-  }
-}
+type ErrorName = 'No_Dot_Starting' | 'No_Dot_Ending' | 'No_Consecutive_Dot' | 'Cannot_Reset_Value';
 
-export class NoDotEndingError extends Error {
-  constructor() {
-    super('Cannot use dot(.) as ending.');
-  }
-}
-
-export class NoConsecutiveDotError extends Error {
-  constructor() {
-    super('Detect consecutive dot in your key.');
-  }
-}
-
-export class CannotResetValueError extends Error {
-  constructor() {
-    super('Detect the value is already set as string, cannot reset it to nested object.');
+export class ParsingError extends Error {
+  constructor(
+    public errorName: ErrorName,
+    message: string,
+    public pairInputIndex: number,
+  ) {
+    super(message);
   }
 }

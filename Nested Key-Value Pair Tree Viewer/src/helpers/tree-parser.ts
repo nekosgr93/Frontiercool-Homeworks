@@ -18,12 +18,7 @@
  * 1. 若碰到同 key，且該 key 已經有 value，且其 value 為 string，則此 key 無法再使用巢狀結構(throw cannot reset value error)
  */
 
-import {
-  CannotResetValueError,
-  NoConsecutiveDotError,
-  NoDotEndingError,
-  NoDotStartingError,
-} from '../erros/paring.error';
+import { ParsingError } from '../erros/paring.error';
 
 export type DataTreeType = {
   [key: string]: string | DataTreeType;
@@ -45,24 +40,24 @@ export function treeParser(treeDatas: string[][]) {
 
     const trimValue = value.replace(/^\s+|\s+$|\s+(?=\s)/g, '');
 
-    recursiveSetter(key, trimValue, tree);
+    recursiveSetter(key, trimValue, tree, i);
   }
 
   return tree;
 }
 
-function recursiveSetter(key: string, value: string, data: DataTreeType) {
+function recursiveSetter(key: string, value: string, data: DataTreeType, pairIndex: number) {
   if (key.startsWith('.')) {
-    throw new NoDotStartingError();
+    throw new ParsingError('No_Dot_Starting', 'Cannot use dot(.) as starting.', pairIndex);
   }
 
   if (key.endsWith('.')) {
-    throw new NoDotEndingError();
+    throw new ParsingError('No_Dot_Ending', 'Cannot use dot(.) as ending.', pairIndex);
   }
 
   const splitKeys = key.split('.');
   if (splitKeys.length - 1 !== (key.match(/\./g) || []).length) {
-    throw new NoConsecutiveDotError();
+    throw new ParsingError('No_Consecutive_Dot', 'Detect consecutive dot in your key.', pairIndex);
   }
 
   const trimKey = splitKeys[0].replace(/^\s+|\s+$|\s+(?=\s)/g, '');
@@ -71,14 +66,18 @@ function recursiveSetter(key: string, value: string, data: DataTreeType) {
     if (data[trimKey]) {
       const nestData = data[trimKey];
       if (typeof nestData === 'string') {
-        throw new CannotResetValueError();
+        throw new ParsingError(
+          'Cannot_Reset_Value',
+          'Detect the value is already set as string, cannot reset it to nested object.',
+          pairIndex,
+        );
       } else {
-        recursiveSetter(splitKeys.slice(1).join('.'), value, nestData);
+        recursiveSetter(splitKeys.slice(1).join('.'), value, nestData, pairIndex);
       }
     } else {
       const newTree: DataTreeType = {};
       data[trimKey] = newTree;
-      recursiveSetter(splitKeys.slice(1).join('.'), value, newTree);
+      recursiveSetter(splitKeys.slice(1).join('.'), value, newTree, pairIndex);
     }
   } else {
     data[trimKey] = value;
