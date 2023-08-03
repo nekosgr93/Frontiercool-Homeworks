@@ -44,3 +44,4 @@ Open http://localhost:4173/ in your browser to see the result.
 https://df2qfzydlu86g.cloudfront.net/
 
 ## 專案心得
+Nesting Tree 的部分有點像 Leet Code 的題目，顯示上用到 Recursive component 的概念，自己另外在表單上加了一些驗證和 error message。

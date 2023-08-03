@@ -1,7 +1,7 @@
 <template lang="pug">
-li.flex.space-x-2(:class="{ 'flex-col': hasNestedValue }")
-  .flex.flex-row
-    p {{ dataKey }}: 
+li.flex.space-x-2.my-1(:class="{ 'flex-col': hasNestedValue }")
+  .flex.flex-row.space-x-1
+    p {{ `${dataKey}: `  }}
     template(v-if="hasNestedValue")
       button(v-if="blockCollopse" @click="blockCollopse = false") [+]
       button(v-else @click="blockCollopse = true") [-]
